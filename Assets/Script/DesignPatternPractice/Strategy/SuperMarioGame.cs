@@ -17,7 +17,7 @@
 // 마리오 역시 별도 클래스로 빼서 캡슐화하는 것이 가능합니다.
 // 
 // ex)
-// (선언부) protected Mario _mario;
+// (선언부) private Mario _mario;
 // (Init 메서드) _mario = new MarioFlower(); --> MarioFlower는 Mario의 서브클래스
 
 using UnityEngine;
@@ -26,10 +26,10 @@ namespace headfirst.strategy
 {
     public class SuperMarioGame : MonoBehaviour
     {
-        protected IMarioJumpBehaviour _jumpBehaviour;
-        protected IMarioFireBehaviour _fireBehaviour;
-        protected IMarioRollBehaviour _rollBehaviour;
-        protected IMarioCrouchBehaviour _crouchBehaviour;
+        private IMarioJumpBehaviour _jumpBehaviour;
+        private IMarioFireBehaviour _fireBehaviour;
+        private IMarioRollBehaviour _rollBehaviour;
+        private IMarioCrouchBehaviour _crouchBehaviour;
 
         private void Start()
         {
