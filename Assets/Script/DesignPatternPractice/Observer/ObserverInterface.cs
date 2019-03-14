@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace headfirst.observer
+﻿namespace headfirst.observer
 {
-    public interface ISubject
+    public interface IObservableSubject
     {
         void RegisterObserver(IObserver o);
 
@@ -16,10 +12,5 @@ namespace headfirst.observer
     public interface IObserver
     {
         void ReceiveDataUpdate(float temp, float humidity, float pressure);
-    }
-
-    public interface IDisplayElement
-    {
-        void Display();
     }
 }
