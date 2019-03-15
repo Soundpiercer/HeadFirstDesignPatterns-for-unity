@@ -1,6 +1,6 @@
 ﻿// [HEAD FIRST DESIGN PATTERNS - 02. OBSERVER PATTERN]
 // 
-// Super Mario Game
+// Weather Forecasting System
 // Author : Soundpiercer
 // soundpiercer@gmail.com
 //
