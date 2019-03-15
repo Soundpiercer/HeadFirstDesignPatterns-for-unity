@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace headfirst.factory
+﻿namespace headfirst.factory
 {
+    
+
+    /// <summary>
+    /// 기본 피자 공장입니다.
+    /// </summary>
     public class PizzaFactory
     {
-        // static으로 만들면 팩토리를 인스턴스화하지 않아도 된다.
-        // 단, PizzaFactory를 상속하게 될 경우엔 static이면 안되고 스토어에서 따로 객체를 생성해 주어야 한다.
+        // static으로 만들면 팩토리를 인스턴스화하지 않아도 되나, 상속하여 쓸 수 없게 됩니다.
         public virtual Pizza CreatePizza(PizzaType type)
         {
             switch (type)
@@ -24,10 +24,12 @@ namespace headfirst.factory
         }
     }
 
-    public class NYPizzaFactory : PizzaFactory
+    /// <summary>
+    /// 뉴욕에서 쓰는 피자 공장입니다.
+    /// </summary>
+    public class NewYorkPizzaFactory : PizzaFactory
     {
-        // static으로 만들면 팩토리를 인스턴스화하지 않아도 된다.
-        // 단, PizzaFactory를 상속하게 될 경우엔 static이면 안되고 스토어에서 따로 객체를 생성해 주어야 한다.
+        // static으로 만들면 팩토리를 인스턴스화하지 않아도 되나, 상속하여 쓸 수 없게 됩니다.
         public override Pizza CreatePizza(PizzaType type)
         {
             switch (type)
@@ -37,7 +39,7 @@ namespace headfirst.factory
                 case PizzaType.Bulgogi:
                     return new BulgogiPizza();
                 case PizzaType.Potato:
-                    return new NYPotatoPizza();
+                    return new NewYorkPotatoPizza();
                 default:
                     return new DefaultPizza();
             }
