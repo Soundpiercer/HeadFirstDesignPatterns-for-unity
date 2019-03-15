@@ -5,9 +5,10 @@
 // soundpiercer@gmail.com
 //
 // 권장하는 보는 순서
-// 1. Character.cs
-// 2. Buffs
-// 3. CQ Game.cs
+// 1. CQ Game.cs
+// 2. Character.cs
+// 3. Buffs
+// 4. CQ Game.cs 다시 한번 둘러보기
 
 using UnityEngine;
 
