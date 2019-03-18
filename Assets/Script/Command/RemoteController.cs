@@ -6,17 +6,35 @@ namespace headfirst.command
 {
     public class RemoteController : MonoBehaviour
     {
-        private ButtonSlot _slot = new ButtonSlot();
-        private List<Effect> _effectList = new List<Effect>();
-        Command1 _command1;
+        private List<ButtonSlot> _slotList = new List<ButtonSlot>();
 
         private void Start()
         {
-            _effectList.Add(new Effect1());
-            _command1 = new Command1(_effectList[0]);
+            _slotList.Add(new ButtonSlot());
+            _slotList.Add(new ButtonSlot());
+            _slotList.Add(new ButtonSlot());
+            _slotList.Add(new ButtonSlot());
+            _slotList.Add(new ButtonSlot());
 
-            _slot.SetCommand(_command1);
-            _slot.OnButtonClicked();
+            _slotList[0].SetCommand(new Command1(new Effect1()));
+            _slotList[1].SetCommand(new Command2(new Effect2()));
+            _slotList[2].SetCommand(new Command3(new Effect3()));
+            _slotList[3].SetCommand(new Command1(new Effect3()));
+            _slotList[4].SetCommand(new NullCommand());
+
+            Debug.Log("<color=lime>-NORMAL EXECUTION--------------------------</color>");
+
+            foreach (ButtonSlot b in _slotList)
+            {
+                b.OnButtonClicked();
+            }
+
+            Macro();
+        }
+
+        private void Macro()
+        {
+            Debug.Log("<color=lime>-MACRO EXECUTION--------------------------</color>");
         }
     }
 }
