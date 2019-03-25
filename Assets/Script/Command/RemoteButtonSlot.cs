@@ -12,6 +12,7 @@
         public void Click()
         {
             _command.Execute();
+            CommandStack.Push(_command);
         }
     }
 }

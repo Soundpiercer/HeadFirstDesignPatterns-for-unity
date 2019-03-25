@@ -7,6 +7,7 @@ namespace headfirst.command
     public interface ICommand
     {
         void Execute();
+        void UnExecute();
     }
 
     #region Single Command
@@ -25,8 +26,11 @@ namespace headfirst.command
                 _effect.Off();
             else
                 _effect.On();
+        }
 
-            CommandStack.Push(this);
+        public void UnExecute()
+        {
+            Execute();
         }
     }
 
@@ -45,8 +49,11 @@ namespace headfirst.command
                 _effect.Off();
             else
                 _effect.On();
+        }
 
-            CommandStack.Push(this);
+        public void UnExecute()
+        {
+            Execute();
         }
     }
 
@@ -65,8 +72,11 @@ namespace headfirst.command
                 _effect.Off();
             else
                 _effect.On();
+        }
 
-            CommandStack.Push(this);
+        public void UnExecute()
+        {
+            Execute();
         }
     }
 
@@ -81,12 +91,17 @@ namespace headfirst.command
         {
             _nullEffect.On();
         }
+
+        public void UnExecute()
+        {
+            Execute();
+        }
     }
     #endregion
 
     public class Macro1 : ICommand
     {
-        Queue<Effect> _queue = new Queue<Effect>();
+        List<Effect> _effectList = new List<Effect>();
 
         public Macro1()
         {
@@ -97,47 +112,36 @@ namespace headfirst.command
         {
             foreach (Effect e in args)
             {
-                _queue.Enqueue(e);
+                _effectList.Add(e);
             }
         }
 
         public void Execute()
         {
-            foreach (Effect e in _queue)
+            for (int i = 0; i < _effectList.Count; i++)
             {
-                if (e.IsOn())
+                if (_effectList[i].IsOn())
                 {
-                    e.Off();
+                    _effectList[i].Off();
                 }
                 else
                 {
-                    e.On();
+                    _effectList[i].On();
                 }
             }
         }
-    }
 
-    public static class CommandStack
-    {
-        private static Stack<ICommand> _stack = new Stack<ICommand>();
-
-        public static void Push(ICommand c)
+        public void UnExecute()
         {
-            _stack.Push(c);
-        }
-
-        public static void Undo(int count)
-        {
-            for (int i = 0; i < count; i++)
+            for (int i = _effectList.Count; i > 0; i--)
             {
-                try
+                if (_effectList[i - 1].IsOn())
                 {
-                    _stack.Pop().Execute();
+                    _effectList[i - 1].Off();
                 }
-                catch (Exception)
+                else
                 {
-                    Debug.LogError("Stack is Empty!");
-                    break;
+                    _effectList[i - 1].On();
                 }
             }
         }

@@ -41,7 +41,7 @@ namespace headfirst.command
         {
             Debug.Log("<color=lime>-MACRO EXECUTION--------------------------</color>");
 
-            _slotList[0].SetCommand(new Macro1(new Effect[] { new Effect3(), new Effect2(), new Effect1()}));
+            _slotList[0].SetCommand(new Macro1(new Effect[] { new Effect2(), new Effect1(), new Effect1()}));
 
             _slotList[0].Click();
         }
@@ -52,8 +52,8 @@ namespace headfirst.command
 
             _slotList[0].SetCommand(new Command1(new Effect1()));
 
-            Debug.LogWarning("Undo 3 Commands");
-            CommandStack.Undo(3);
+            Debug.LogWarning("Undo 7 Commands");
+            CommandStack.Undo(7);
         }
     }
 }
