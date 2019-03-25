@@ -1,15 +1,20 @@
-﻿namespace headfirst.command
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace headfirst.command
 {
     public interface ICommand
     {
         void Execute();
     }
 
+    #region Single Command
     public class Command1 : ICommand
     {
         Effect _effect;
 
-        public Command1 (Effect effect)
+        public Command1(Effect effect)
         {
             _effect = effect;
         }
@@ -20,6 +25,8 @@
                 _effect.Off();
             else
                 _effect.On();
+
+            CommandStack.Push(this);
         }
     }
 
@@ -38,6 +45,8 @@
                 _effect.Off();
             else
                 _effect.On();
+
+            CommandStack.Push(this);
         }
     }
 
@@ -56,6 +65,8 @@
                 _effect.Off();
             else
                 _effect.On();
+
+            CommandStack.Push(this);
         }
     }
 
@@ -71,7 +82,64 @@
             _nullEffect.On();
         }
     }
+    #endregion
 
-    // Undo (Queue, Stack)
-    // Macro
+    public class Macro1 : ICommand
+    {
+        Queue<Effect> _queue = new Queue<Effect>();
+
+        public Macro1()
+        {
+            
+        }
+
+        public Macro1(Effect[] args)
+        {
+            foreach (Effect e in args)
+            {
+                _queue.Enqueue(e);
+            }
+        }
+
+        public void Execute()
+        {
+            foreach (Effect e in _queue)
+            {
+                if (e.IsOn())
+                {
+                    e.Off();
+                }
+                else
+                {
+                    e.On();
+                }
+            }
+        }
+    }
+
+    public static class CommandStack
+    {
+        private static Stack<ICommand> _stack = new Stack<ICommand>();
+
+        public static void Push(ICommand c)
+        {
+            _stack.Push(c);
+        }
+
+        public static void Undo(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                try
+                {
+                    _stack.Pop().Execute();
+                }
+                catch (Exception)
+                {
+                    Debug.LogError("Stack is Empty!");
+                    break;
+                }
+            }
+        }
+    }
 }

@@ -9,7 +9,7 @@
             _command = command;
         }
 
-        public void OnButtonClicked()
+        public void Click()
         {
             _command.Execute();
         }
