@@ -1,4 +1,23 @@
-﻿using System.Collections;
+﻿// [HEAD FIRST DESIGN PATTERNS - 06. COMMAND PATTERN]
+// 
+// Remote Controller
+// Author : Soundpiercer
+// soundpiercer@gmail.com
+//
+// 권장하는 보는 순서
+// --------------- Single
+// 1. RemoteController.cs
+// 2. RemoteButtonSlot.cs
+// 3. RemoteCommand.cs (Single Command 부분)
+// 4. RemoteCommandEffect.cs
+// --------------- Macro
+// 5. RemoteController.cs
+// 6. RemoteCommand.cs (Macro 부분)
+// --------------- Stack Ops
+// 7. RemoteController.cs
+// 8. RemoteCommandStack.cs
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -99,13 +99,14 @@ namespace headfirst.command
     }
     #endregion
 
+    #region Macro
     public class Macro1 : ICommand
     {
         List<Effect> _effectList = new List<Effect>();
 
         public Macro1()
         {
-            
+
         }
 
         public Macro1(Effect[] args)
@@ -146,4 +147,5 @@ namespace headfirst.command
             }
         }
     }
+    #endregion
 }
